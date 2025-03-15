@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Forest Fire Intensity Prediction</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: #f4f4f4;
+    }
+    .container {
+      max-width: 600px;
+      margin-top: 60px;
+      padding: 30px;
+      background: white;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      border-radius: 16px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>🔥 Predict Fire Intensity</h2>
+    <form method="post" action="/predict">
+      <div class="mb-3">
+        <label class="form-label">Temperature</label>
+        <input type="number" step="any" name="Temperature" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Relative Humidity (RH)</label>
+        <input type="number" step="any" name="RH" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Wind Speed (Ws)</label>
+        <input type="number" step="any" name="Ws" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Rain</label>
+        <input type="number" step="any" name="Rain" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">FFMC</label>
+        <input type="number" step="any" name="FFMC" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">DMC</label>
+        <input type="number" step="any" name="DMC" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">ISI</label>
+        <input type="number" step="any" name="ISI" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Classes (1 = fire, 0 = not fire)</label>
+        <input type="number" name="Classes" class="form-control" required min="0" max="1">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Region (1 or 2)</label>
+        <input type="number" name="Region" class="form-control" required min="1" max="2">
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">Predict</button>
+    </form>
+
+    {% if prediction %}
+      <div class="alert alert-info text-center mt-4">
+        <strong>Prediction:</strong> {{ prediction }}
+      </div>
+    {% endif %}
+  </div>
+
+</body>
+</html>
